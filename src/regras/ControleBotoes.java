@@ -1,4 +1,4 @@
-package rules;
+package regras;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -64,6 +64,7 @@ public class ControleBotoes {
 		case PARES: // mudar cor e mudar texto
 			botao.setBackground(Color.GREEN);
 			botao.setText(nBotao);
+			botao.setEnabled(false);
 			break;
 		}
 	}
