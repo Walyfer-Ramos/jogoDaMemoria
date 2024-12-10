@@ -55,7 +55,7 @@ public class ControleBotoes {
 		switch(selected) {
 		case NORMAL:// Gray, sem exibição
 			botao.setBackground(null);
-			botao.setText("NORMAL");
+			botao.setText("Nigga");
 			break;
 		case SELECTED: // mudar cor e exibir text
 			botao.setBackground(Color.BLUE);

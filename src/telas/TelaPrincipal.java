@@ -1,7 +1,7 @@
 package telas;
 
 
-import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -16,6 +16,10 @@ import regras.ControleBotoes;
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
 
+	private static final int QUANTIDADE_JOGADAS = 2;
+	private int jogadas = 0;
+	
+	
 	private JButton botao;
 	private JButton botao1;
 	private JPanel painel;
@@ -28,11 +32,15 @@ public class TelaPrincipal extends JFrame {
 	
 	private List<ControleBotoes> listaControle;
 	
+	private List<ControleBotoes> listaSelecionados;
+	
 	
 	public TelaPrincipal() {
 		super("Jogo da Memoria");  // Titulo da Aba
 		
+		
 		listaControle = new ArrayList<>();
+		listaSelecionados = new ArrayList<>();
 		
 		controle = new ControleBotoes();
 		controle.setNmBotao("BOA");
@@ -53,7 +61,26 @@ public class TelaPrincipal extends JFrame {
 
 				for(ControleBotoes cont: listaControle) {
 					if(cont.getBotaoDeReferencia().get(botao) !=  null) {
+						jogadas++;
 						cont.executarAcao((JButton)e.getSource() , EstadoDoBotao.SELECTED);
+						
+						if(!listaSelecionados.contains(cont)) {
+							listaSelecionados.add(cont);
+						}
+						
+						
+						System.out.println(listaSelecionados.size());
+						if(jogadas == QUANTIDADE_JOGADAS) {
+							if(listaSelecionados.size() > 1) {
+								//deixando os botoes em estado inicial 
+								for(ControleBotoes cb: listaSelecionados) {
+									cb.zerandoSelecao();
+								}
+							}
+							jogadas = 0;
+							listaSelecionados.clear();
+						}
+						break;
 					}
 				}
 				
